@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Ibrohim Alimuhammedov](https://up.htmlacademy.ru/javascript/20/user/989547).
-* Наставник: `Неизвестно`.
+* Наставник: `Михаил Семиколенов`.
 
 ---
 
