@@ -67,5 +67,9 @@ announcement().forEach(function(element) {
   pin.setAttribute("style", "left: " + element.location.x + "px; top: " + element.location.y + "px;");
   document.querySelector(".map__pins").appendChild(pin);
 
+  var pinImg = pin.querySelector("img");
+  pinImg.setAttribute("src", "img/avatars/user" + element.author.avatar + ".png");
+  pinImg.setAttribute("alt", element.offer.title);
+
   console.log(element.location.x);
 })
