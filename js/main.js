@@ -47,7 +47,7 @@ var announcement = function () {
         'avatar': '0' + (i + 1)
       },
       'offer': {
-        'title': 'salom',
+        'title': 'salom1',
         'address': '600, 350',
         'price': Math.floor(Math.random() * 100) + '00',
         'type': TYPES[Math.floor(Math.random() * 4)],
