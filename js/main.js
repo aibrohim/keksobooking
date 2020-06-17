@@ -62,11 +62,6 @@ var pinTemplate = document.querySelector("#pin").content.querySelector(".map__pi
 
 map.classList.remove("map--faded");
 
-
-for (var i = 0; i < announcement().length - 1; i++) {
-
-}
-
 announcement().forEach(function(element) {
   var pin = pinTemplate.cloneNode(true);
   pin.setAttribute("style", "left: " + element.location.x + "px; top: " + element.location.y + "px;");
