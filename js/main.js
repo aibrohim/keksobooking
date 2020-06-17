@@ -7,6 +7,15 @@ var PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.g
 var fragment = document.createDocumentFragment();
 var map = document.querySelector('.map');
 var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
+var cardTemplate = document.querySelector('#card').content.querySelector('article');
+var MAP__PINS = document.querySelector('.map__pins');
+
+var dictionary = {
+  palace: 'Дворец',
+  house: 'Дом',
+  bungalo: 'Бунгало',
+  flat: 'Квартира'
+};
 
 var getRandomNumber = function (min, max) {
   return Math.floor(min + Math.random() * (max + 1 - min));
@@ -40,7 +49,7 @@ var announcement = function () {
       'offer': {
         'title': 'salom',
         'address': '600, 350',
-        'price': 500,
+        'price': Math.floor(Math.random() * 100) + '00',
         'type': TYPES[Math.floor(Math.random() * 4)],
         'rooms': Math.floor(Math.random() * 10) + 1,
         'guests': Math.floor(Math.random() * 10) + 1,
@@ -73,4 +82,36 @@ announcement().forEach(function (element) {
   fragment.appendChild(pin);
 });
 
-document.querySelector('.map__pins').appendChild(fragment);
+MAP__PINS.appendChild(fragment);
+
+var showFeatures = function (array) {
+  var newArray = [];
+
+  array.forEach(function (item) {
+    var feature = document.createElement('li');
+    feature.classList.add('popup__feature--' + array.item);
+    newArray.push(feature);
+  });
+
+  return newArray;
+};
+
+announcement().forEach(function (element) {
+  var popup = cardTemplate.cloneNode(true);
+
+  popup.querySelector('.popup__title').textContent = element.offer.title;
+  popup.querySelector('.popup__text--address').textContent = element.offer.address;
+  popup.querySelector('.popup__text--price').textContent = element.offer.price + '₽/ночь';
+  popup.querySelector('.popup__type').textContent = dictionary[element.offer.type];
+  popup.querySelector('.popup__text--capacity').textContent = element.offer.rooms + ' комнаты для ' + element.offer.guests + ' гостей';
+  popup.querySelector('.popup__text--time').textContent = 'Заезд после ' + element.offer.checkin + ', выезд до ' + element.offer.checkout;
+  console.log(element.offer.features);
+
+  popup.querySelector('.popup__features').appendChild(showFeatures(element.offer.features));
+
+
+  popup.querySelector('.popup__description').textContent = element.offer.description;
+  popup.querySelector('.popup__photos').textContent = element.offer.description;
+
+  MAP__PINS.appendChild(popup);
+});
