@@ -4,6 +4,9 @@ var TYPES = ['palace', 'flat', 'house', 'bungalo'];
 var CHECKINOUT = ['12: 00', '13: 00', '14: 00'];
 var FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 var PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
+var fragment = document.createDocumentFragment();
+var map = document.querySelector('.map');
+var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 
 var getRandomNumber = function (min, max) {
   return Math.floor(min + Math.random() * (max + 1 - min));
@@ -57,17 +60,17 @@ var announcement = function () {
   return result;
 };
 
-var map = document.querySelector('.map');
-var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
-
 map.classList.remove('map--faded');
 
 announcement().forEach(function (element) {
   var pin = pinTemplate.cloneNode(true);
   pin.setAttribute('style', 'left: ' + element.location.x + 'px; top: ' + element.location.y + 'px;');
-  document.querySelector('.map__pins').appendChild(pin);
 
   var pinImg = pin.querySelector('img');
   pinImg.setAttribute('src', 'img/avatars/user' + element.author.avatar + '.png');
   pinImg.setAttribute('alt', element.offer.title);
+
+  fragment.appendChild(pin);
 });
+
+document.querySelector('.map__pins').appendChild(fragment);
