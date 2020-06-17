@@ -64,9 +64,13 @@ map.classList.remove("map--faded");
 
 
 for (var i = 0; i < announcement().length - 1; i++) {
+
+}
+
+announcement().forEach(function(element) {
   var pin = pinTemplate.cloneNode(true);
-  pin.setAttribute("style", "left: " + announcement()[i].x + "top: " + announcement()[i].y);
+  pin.setAttribute("style", "left: " + element.location.x + "px; top: " + element.location.y + "px;");
   document.querySelector(".map__pins").appendChild(pin);
 
-  console.log(announcement()[i].x);
-}
+  console.log(element.location.x);
+})
