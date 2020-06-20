@@ -39,7 +39,7 @@ var getRandomElements = function (array) {
   return finalArray;
 };
 
-var announcement = function () {
+var announcements = function () {
   var result = [];
 
   for (var i = 0; i < 8; i++) {
@@ -72,7 +72,7 @@ var announcement = function () {
 
 map.classList.remove('map--faded');
 
-announcement().forEach(function (element) {
+announcements().forEach(function (element) {
   var pin = pinTemplate.cloneNode(true);
   pin.setAttribute('style', 'left: ' + element.location.x + 'px; top: ' + element.location.y + 'px;');
 
@@ -87,7 +87,6 @@ MAP__PINS.appendChild(fragment);
 
 var showPopup = function (objectItem) {
   var popup = cardTemplate.cloneNode(true);
-  var FEATURES_HTML = popup.querySelectorAll('.popup__feature');
   var POPUP_FEATURES = popup.querySelector('.popup__features');
   var POPUP_PHOTOS = popup.querySelector('.popup__photos');
 
@@ -127,4 +126,4 @@ var showPopup = function (objectItem) {
   return MAP.insertBefore(popup, document.querySelector('.map__filters-container'));
 };
 
-showPopup(announcement()[0]);
+showPopup(announcements()[0]);
