@@ -81,11 +81,31 @@ var announcements = function () {
   return result;
 };
 
+var onRoomNumberChange = function () {
+  if (roomNumber.value === '1') {
+    capacity.innerHTML = '';
+    addOption(1);
+  } else if (roomNumber.value === '2') {
+    capacity.innerHTML = '';
+    addOption(1);
+    addOption(2);
+  } else if (roomNumber.value === '3') {
+    capacity.innerHTML = '';
+    addOption(1);
+    addOption(2);
+    addOption(3);
+  } else if (roomNumber.value === '100') {
+    capacity.innerHTML = '';
+    addOption(0);
+  }
+};
+
 var startProgram = function () {
   MAP.classList.remove('map--faded');
   MAP__PINS.appendChild(fragment);
   AD_FORM.classList.remove('ad-form--disabled');
   locationInput.value = (570 + (MAIN_PIN_WIDTH / 2)) + ', ' + (375 + (MAIN_PIN_HEIGHT));
+  onRoomNumberChange();
 
   FIELDSETS.forEach(function (fieldset) {
     fieldset.disabled = false;
@@ -130,24 +150,7 @@ MAIN_PIN.addEventListener('keydown', function (evt) {
 
 MAIN_PIN.addEventListener('mousemove', function () {});
 
-roomNumber.addEventListener('change', function () {
-  if (roomNumber.value === '1') {
-    capacity.innerHTML = '';
-    addOption(1);
-  } else if (roomNumber.value === '2') {
-    capacity.innerHTML = '';
-    addOption(1);
-    addOption(2);
-  } else if (roomNumber.value === '3') {
-    capacity.innerHTML = '';
-    addOption(1);
-    addOption(2);
-    addOption(3);
-  } else if (roomNumber.value === '100') {
-    capacity.innerHTML = '';
-    addOption(0);
-  }
-});
+roomNumber.addEventListener('change', onRoomNumberChange);
 
 announcements().forEach(function (element) {
   var pin = pinTemplate.cloneNode(true);
