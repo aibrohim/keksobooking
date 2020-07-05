@@ -9,6 +9,11 @@ var MAP_OVERLAY = MAP.querySelector('.map__overlay');
 var locationInput = document.querySelector('#address');
 var roomNumber = document.querySelector('#room_number');
 var capacity = document.querySelector('#capacity');
+var accomodationType = document.querySelector('#type');
+var accomodationPrice = document.querySelector('#price');
+var timein = document.querySelector('#timein');
+var timeout = document.querySelector('#timeout');
+var avatar = document.querySelector('#avatar');
 var MAP_WIDTH = MAP_OVERLAY.offsetWidth;
 var MAP_HEIGHT = MAP_OVERLAY.offsetHeight;
 var MAIN_PIN_WIDTH = MAIN_PIN.offsetWidth;
@@ -86,4 +91,26 @@ MAIN_PIN.addEventListener('keydown', function (evt) {
 
 roomNumber.addEventListener('change', onRoomNumberChange);
 
+accomodationType.addEventListener('change', function () {
+  if (accomodationType.value === 'bungalo') {
+    accomodationPrice.setAttribute('placeholder', '0');
+    accomodationPrice.setAttribute('min', '0');
+  } else if (accomodationType.value === 'flat') {
+    accomodationPrice.setAttribute('placeholder', '1000');
+    accomodationPrice.setAttribute('min', '1000');
+  } else if (accomodationType.value === 'house') {
+    accomodationPrice.setAttribute('placeholder', '5000');
+    accomodationPrice.setAttribute('min', '5000');
+  } else if (accomodationType.value === 'palace') {
+    accomodationPrice.setAttribute('placeholder', '10000');
+    accomodationPrice.setAttribute('min', '10000');
+  }
+});
 
+timein.addEventListener('change', function () {
+  timeout.value = timein.value;
+});
+
+timeout.addEventListener('change', function () {
+  timein.value = timeout.value;
+});
