@@ -31,7 +31,7 @@ window.mainPin = (function () {
       mainPin.style.left = (mainPin.offsetLeft - shift.x) + 'px';
       mainPin.style.top = (mainPin.offsetTop - shift.y) + 'px';
 
-      addressInput.value = (mainPin.offsetLeft - shift.x) + ', ' + (mainPin.offsetTop - shift.y);
+      addressInput.value = (mainPin.style.left.replace('px', '')) + ', ' + (mainPin.style.top.replace('px', ''));
 
       if (mainPin.offsetLeft <= -32) {
         mainPin.style.left = (mainPin.offsetLeft + shift.x) + 'px';
