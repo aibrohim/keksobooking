@@ -44,6 +44,10 @@ window.mainPin = (function () {
       } else if (mainPin.offsetTop >= 630) {
         mainPin.style.top = (mainPin.offsetTop + shift.y) + 'px';
       }
+
+      if (mainPin.offsetLeft <= -32 || mainPin.offsetLeft >= 1168 || mainPin.offsetTop <= 130 || mainPin.offsetTop >= 630) {
+        return;
+      }
     };
 
     var onMouseUp = function () {
