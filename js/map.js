@@ -1,9 +1,9 @@
 'use strict';
 
 window.map = (function () {
-  var MAIN_PIN = document.querySelector('.map__pin--main');
   var MAP__PINS = document.querySelector('.map__pins');
   var MAP = document.querySelector('.map');
+  var MAIN_PIN = MAP.querySelector('.map__pin--main');
   var AD_FORM = document.querySelector('.ad-form');
   var locationInput = document.querySelector('#address');
   var MAIN_PIN_WIDTH = MAIN_PIN.offsetWidth;
