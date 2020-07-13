@@ -17,6 +17,6 @@ window.pins = (function () {
   });
 
   return {
-    fragment: fragment,
+    fragment: fragment
   };
 })();
