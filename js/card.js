@@ -25,6 +25,10 @@ window.card = (function () {
     }
   };
 
+  var getData = function (data) {
+    return data;
+  };
+
   return {
     showPopup: function (objectItem) {
       var article = document.querySelector('.popup');
@@ -84,7 +88,8 @@ window.card = (function () {
         if (!window.mapPins[i].classList.contains('map__pin--main')) {
           window.mapPins[i].addEventListener('click', (function (localI) {
             return function () {
-              window.card.showPopup(window.data.announcements()[localI - 1]);
+              console.log(window.backend.data(getData)[2]);
+              window.card.showPopup(window.backend.data(getData)[localI - 1]);
             };
           })(i));
         }
