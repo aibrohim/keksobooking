@@ -25,8 +25,16 @@ window.card = (function () {
     }
   };
 
-  var getData = function (data) {
-    return data;
+  var openPopup = function (data) {
+    for (var i = 0; i < window.mapPins.length; i++) {
+      if (!window.mapPins[i].classList.contains('map__pin--main')) {
+        window.mapPins[i].addEventListener('click', (function (localI) {
+          return function () {
+            window.card.showPopup(data[localI - 1]);
+          };
+        })(i));
+      }
+    }
   };
 
   return {
@@ -72,7 +80,7 @@ window.card = (function () {
         POPUP_PHOTOS.appendChild(photo);
       });
 
-      popup.querySelector('.popup__avatar').setAttribute('src', 'img/avatars/user' + objectItem.author.avatar + '.png');
+      popup.querySelector('.popup__avatar').setAttribute('src', objectItem.author.avatar);
 
       popupClose.addEventListener('click', function () {
         closePopup(popup);
@@ -84,16 +92,7 @@ window.card = (function () {
     },
 
     openPopup: function () {
-      for (var i = 0; i < window.mapPins.length; i++) {
-        if (!window.mapPins[i].classList.contains('map__pin--main')) {
-          window.mapPins[i].addEventListener('click', (function (localI) {
-            return function () {
-              console.log(window.backend.data(getData)[2]);
-              window.card.showPopup(window.backend.data(getData)[localI - 1]);
-            };
-          })(i));
-        }
-      }
+      window.backend.data(openPopup);
     }
   };
 })();
