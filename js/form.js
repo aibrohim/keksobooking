@@ -10,8 +10,33 @@ window.form = (function () {
   var MAP_OVERLAY = MAP.querySelector('.map__overlay');
   var MAP_WIDTH = MAP_OVERLAY.offsetWidth;
   var MAP_HEIGHT = MAP_OVERLAY.offsetHeight;
+  var form = document.querySelector('.ad-form');
+  var resetButton = document.querySelector('.ad-form__reset');
 
   locationInput.value = MAP_WIDTH / 2 + ', ' + MAP_HEIGHT / 2;
+
+  var resetForm = function () {
+    form.reset();
+  };
+
+  var onSuccess = function () {
+    window.map.endProgram();
+    window.messages.onSuccess();
+    resetForm();
+  };
+
+  var onError = function () {
+    window.messages.onError();
+  };
+
+  form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.backend.postData(new FormData(form), onSuccess, onError);
+  });
+
+  resetButton.addEventListener('click', function (evt) {
+    form.resetForm();
+  });
 
   return {
     onRoomNumberChange: function () {

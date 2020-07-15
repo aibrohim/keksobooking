@@ -28,6 +28,21 @@ window.map = (function () {
       FILTER_FORM.forEach(function (item) {
         item.disabled = false;
       });
+    },
+    endProgram: function () {
+      MAP.classList.add('map--faded');
+      for (var i = 1; i < window.mapPins.length; i++) {
+        window.mapPins[i].remove();
+      }
+      AD_FORM.classList.add('ad-form--disabled');
+
+      FIELDSETS.forEach(function (fieldset) {
+        fieldset.disabled = true;
+      });
+
+      FILTER_FORM.forEach(function (item) {
+        item.disabled = true;
+      });
     }
   };
 })();
