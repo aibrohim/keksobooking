@@ -32,7 +32,7 @@ window.map = (function () {
     endProgram: function () {
       MAP.classList.add('map--faded');
       for (var i = 1; i < window.mapPins.length; i++) {
-        window.mapPins[i].remove();
+        window.pins.fragment.appendChild(window.mapPins[i]);
       }
       AD_FORM.classList.add('ad-form--disabled');
 
