@@ -12,18 +12,19 @@ window.form = (function () {
   var MAP_HEIGHT = MAP_OVERLAY.offsetHeight;
   var form = document.querySelector('.ad-form');
   var resetButton = document.querySelector('.ad-form__reset');
+  var MAIN_PIN = MAP.querySelector('.map__pin--main');
 
   locationInput.value = MAP_WIDTH / 2 + ', ' + MAP_HEIGHT / 2;
 
   var resetForm = function () {
     form.reset();
+    locationInput.value = (MAIN_PIN.style.left.replace('px', '')) + ', ' + (MAIN_PIN.style.top.replace('px', ''));
   };
 
   var onSuccess = function () {
     window.map.endProgram();
     window.messages.onSuccess();
     resetForm();
-    locationInput.value = '570, 375';
   };
 
   var onError = function () {
