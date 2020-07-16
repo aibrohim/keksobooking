@@ -18,8 +18,7 @@ window.form = (function () {
 
   locationInput.value = MAP_WIDTH / 2 + ', ' + MAP_HEIGHT / 2;
 
-  var resetForm = function (evt) {
-    // evt.preventDefault();
+  var resetForm = function () {
     form.reset();
     MAIN_PIN.style.left = '570px';
     MAIN_PIN.style.top = '375px';
@@ -41,8 +40,8 @@ window.form = (function () {
     window.backend.postData(new FormData(form), onSuccess, onError);
   });
 
-  resetButton.addEventListener('click', function (evt) {
-    resetForm(evt);
+  resetButton.addEventListener('click', function () {
+    resetForm();
     locationInput.value = (MAIN_PIN.offsetLeft + (MAIN_PIN_WIDTH / 2)) + ', ' + (MAIN_PIN.offsetTop + (MAIN_PIN_HEIGHT));
   });
 
