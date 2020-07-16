@@ -19,7 +19,7 @@ window.form = (function () {
   locationInput.value = MAP_WIDTH / 2 + ', ' + MAP_HEIGHT / 2;
 
   var resetForm = function (evt) {
-    evt.preventDefault();
+    // evt.preventDefault();
     form.reset();
     MAIN_PIN.style.left = '570px';
     MAIN_PIN.style.top = '375px';
