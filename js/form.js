@@ -16,7 +16,8 @@ window.form = (function () {
 
   locationInput.value = MAP_WIDTH / 2 + ', ' + MAP_HEIGHT / 2;
 
-  var resetForm = function () {
+  var resetForm = function (evt) {
+    evt.preventDefault();
     form.reset();
     locationInput.value = (MAIN_PIN.style.left.replace('px', '')) + ', ' + (MAIN_PIN.style.top.replace('px', ''));
   };
@@ -37,7 +38,7 @@ window.form = (function () {
   });
 
   resetButton.addEventListener('click', function (evt) {
-    resetForm();
+    resetForm(evt);
   });
 
   return {
