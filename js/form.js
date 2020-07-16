@@ -37,7 +37,7 @@ window.form = (function () {
   });
 
   resetButton.addEventListener('click', function (evt) {
-    form.resetForm();
+    resetForm();
   });
 
   return {
