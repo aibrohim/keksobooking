@@ -43,6 +43,8 @@ window.map = (function () {
       FILTER_FORM.forEach(function (item) {
         item.disabled = true;
       });
+      MAIN_PIN.style.left = '570px';
+      MAIN_PIN.style.top = '375px';
     }
   };
 })();

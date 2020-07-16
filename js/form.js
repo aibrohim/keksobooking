@@ -23,6 +23,7 @@ window.form = (function () {
     window.map.endProgram();
     window.messages.onSuccess();
     resetForm();
+    locationInput.value = '570, 375';
   };
 
   var onError = function () {
