@@ -13,13 +13,17 @@ window.form = (function () {
   var form = document.querySelector('.ad-form');
   var resetButton = document.querySelector('.ad-form__reset');
   var MAIN_PIN = MAP.querySelector('.map__pin--main');
+  var MAIN_PIN_WIDTH = MAIN_PIN.offsetWidth;
+  var MAIN_PIN_HEIGHT = MAIN_PIN.offsetHeight + 20;
 
   locationInput.value = MAP_WIDTH / 2 + ', ' + MAP_HEIGHT / 2;
 
   var resetForm = function (evt) {
     evt.preventDefault();
     form.reset();
-    locationInput.value = (MAIN_PIN.style.left.replace('px', '')) + ', ' + (MAIN_PIN.style.top.replace('px', ''));
+    MAIN_PIN.style.left = '570px';
+    MAIN_PIN.style.top = '375px';
+    locationInput.value = (MAIN_PIN.offsetLeft + (MAIN_PIN_WIDTH / 2)) + ', ' + (MAIN_PIN.offsetTop + (MAIN_PIN_HEIGHT));
   };
 
   var onSuccess = function () {
@@ -39,6 +43,7 @@ window.form = (function () {
 
   resetButton.addEventListener('click', function (evt) {
     resetForm(evt);
+    locationInput.value = (MAIN_PIN.offsetLeft + (MAIN_PIN_WIDTH / 2)) + ', ' + (MAIN_PIN.offsetTop + (MAIN_PIN_HEIGHT));
   });
 
   return {

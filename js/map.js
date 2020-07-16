@@ -17,7 +17,7 @@ window.map = (function () {
       MAP__PINS.appendChild(window.pins.fragment);
       window.mapPins = document.querySelectorAll('.map__pin');
       AD_FORM.classList.remove('ad-form--disabled');
-      locationInput.value = (570 + (MAIN_PIN_WIDTH / 2)) + ', ' + (375 + (MAIN_PIN_HEIGHT));
+      locationInput.value = (MAIN_PIN.offsetLeft + (MAIN_PIN_WIDTH / 2)) + ', ' + (MAIN_PIN.offsetTop + (MAIN_PIN_HEIGHT));
       window.form.onRoomNumberChange();
       window.card.openPopup();
 

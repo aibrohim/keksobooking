@@ -1,10 +1,12 @@
 'use strict';
 
 window.mainPin = (function () {
-  var mainPin = document.querySelector('.map__pin--main');
+  var MAIN_PIN = document.querySelector('.map__pin--main');
   var addressInput = document.querySelector('#address');
+  var MAIN_PIN_WIDTH = MAIN_PIN.offsetWidth;
+  var MAIN_PIN_HEIGHT = MAIN_PIN.offsetHeight + 20;
 
-  mainPin.addEventListener('mousedown', function (evt) {
+  MAIN_PIN.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
     var startCoords = {
@@ -12,7 +14,7 @@ window.mainPin = (function () {
       y: evt.clientY
     };
 
-    addressInput.value = (mainPin.style.left.replace('px', '')) + ', ' + (mainPin.style.top.replace('px', ''));
+    addressInput.value = (MAIN_PIN.offsetLeft + (MAIN_PIN_WIDTH / 2)) + ', ' + (MAIN_PIN.offsetTop + (MAIN_PIN_HEIGHT));
 
     var onMouseMove = function (moveEvt) {
       moveEvt.preventDefault();
@@ -28,24 +30,24 @@ window.mainPin = (function () {
       };
 
 
-      mainPin.style.left = (mainPin.offsetLeft - shift.x) + 'px';
-      mainPin.style.top = (mainPin.offsetTop - shift.y) + 'px';
+      MAIN_PIN.style.left = (MAIN_PIN.offsetLeft - shift.x) + 'px';
+      MAIN_PIN.style.top = (MAIN_PIN.offsetTop - shift.y) + 'px';
 
-      addressInput.value = (mainPin.style.left.replace('px', '')) + ', ' + (mainPin.style.top.replace('px', ''));
+      addressInput.value = (MAIN_PIN.offsetLeft + (MAIN_PIN_WIDTH / 2)) + ', ' + (MAIN_PIN.offsetTop + (MAIN_PIN_HEIGHT));
 
-      if (mainPin.offsetLeft <= -32) {
-        mainPin.style.left = (mainPin.offsetLeft + shift.x) + 'px';
-      } else if (mainPin.offsetLeft >= 1168) {
-        mainPin.style.left = (mainPin.offsetLeft + shift.x) + 'px';
+      if (MAIN_PIN.offsetLeft <= -32) {
+        MAIN_PIN.style.left = (MAIN_PIN.offsetLeft + shift.x) + 'px';
+      } else if (MAIN_PIN.offsetLeft >= 1168) {
+        MAIN_PIN.style.left = (MAIN_PIN.offsetLeft + shift.x) + 'px';
       }
 
-      if (mainPin.offsetTop <= 130) {
-        mainPin.style.top = (mainPin.offsetTop + shift.y) + 'px';
-      } else if (mainPin.offsetTop >= 630) {
-        mainPin.style.top = (mainPin.offsetTop + shift.y) + 'px';
+      if (MAIN_PIN.offsetTop <= 130) {
+        MAIN_PIN.style.top = (MAIN_PIN.offsetTop + shift.y) + 'px';
+      } else if (MAIN_PIN.offsetTop >= 630) {
+        MAIN_PIN.style.top = (MAIN_PIN.offsetTop + shift.y) + 'px';
       }
 
-      if (mainPin.offsetLeft <= -32 || mainPin.offsetLeft >= 1168 || mainPin.offsetTop <= 130 || mainPin.offsetTop >= 630) {
+      if (MAIN_PIN.offsetLeft <= -32 || MAIN_PIN.offsetLeft >= 1168 || MAIN_PIN.offsetTop <= 130 || MAIN_PIN.offsetTop >= 630) {
         return;
       }
     };
