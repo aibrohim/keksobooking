@@ -12,23 +12,16 @@ window.form = (function () {
   var MAP_HEIGHT = MAP_OVERLAY.offsetHeight;
   var form = document.querySelector('.ad-form');
   var resetButton = document.querySelector('.ad-form__reset');
-  var MAIN_PIN = MAP.querySelector('.map__pin--main');
-  var MAIN_PIN_WIDTH = MAIN_PIN.offsetWidth;
-  var MAIN_PIN_HEIGHT = MAIN_PIN.offsetHeight + 20;
 
   locationInput.value = MAP_WIDTH / 2 + ', ' + MAP_HEIGHT / 2;
 
   var resetForm = function () {
     form.reset();
-    MAIN_PIN.style.left = '570px';
-    MAIN_PIN.style.top = '375px';
-    locationInput.value = (MAIN_PIN.offsetLeft + (MAIN_PIN_WIDTH / 2)) + ', ' + (MAIN_PIN.offsetTop + (MAIN_PIN_HEIGHT));
   };
 
   var onSuccess = function () {
     window.map.endProgram();
     window.messages.onSuccess();
-    resetForm();
   };
 
   var onError = function () {
@@ -41,11 +34,12 @@ window.form = (function () {
   });
 
   resetButton.addEventListener('click', function () {
-    resetForm();
-    locationInput.value = (MAIN_PIN.offsetLeft + (MAIN_PIN_WIDTH / 2)) + ', ' + (MAIN_PIN.offsetTop + (MAIN_PIN_HEIGHT));
+    window.map.endProgram();
   });
 
   return {
+    resetForm: resetForm,
+
     onRoomNumberChange: function () {
       if (roomNumber.value === '1') {
         capacity.innerHTML = '';
