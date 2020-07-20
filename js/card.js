@@ -25,19 +25,8 @@ window.card = (function () {
     }
   };
 
-  var openPopup = function (data) {
-    for (var i = 0; i < window.mapPins.length; i++) {
-      if (!window.mapPins[i].classList.contains('map__pin--main')) {
-        window.mapPins[i].addEventListener('click', (function (localI) {
-          return function () {
-            window.card.showPopup(data[localI - 1]);
-          };
-        })(i));
-      }
-    }
-  };
-
   return {
+    onPopupEscPress: onPopupEscPress,
     showPopup: function (objectItem) {
       var article = document.querySelector('.popup');
       var popup = cardTemplate.cloneNode(true);
@@ -90,9 +79,16 @@ window.card = (function () {
 
       return MAP.insertBefore(popup, document.querySelector('.map__filters-container'));
     },
-
-    openPopup: function () {
-      window.backend.data(openPopup);
+    openPopup: function (data) {
+      for (var i = 0; i < window.mapPins.length; i++) {
+        if (!window.mapPins[i].classList.contains('map__pin--main')) {
+          window.mapPins[i].addEventListener('click', (function (localI) {
+            return function () {
+              window.card.showPopup(data[localI - 1]);
+            };
+          })(i));
+        }
+      }
     }
   };
 })();

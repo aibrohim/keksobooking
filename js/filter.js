@@ -3,12 +3,12 @@
 window.filter = (function () {
   var selectType = document.querySelector('#housing-type');
 
-  var filterType = function (data) {
+  var filterType = function (ads) {
     if (selectType.value === 'any') {
-      return data;
+      return ads;
     } else {
-      return data.slice().filter(function (element) {
-        return element.offer.type === selectType.value;
+      return ads.slice().filter(function (ad) {
+        return ad.offer.type === selectType.value;
       });
     }
   };

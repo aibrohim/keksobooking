@@ -7,7 +7,7 @@ window.pins = (function () {
   var MAP__PINS = document.querySelector('.map__pins');
 
   var showPins = function (data) {
-    for (var i = 0; i < MAX_PINS; i++) {
+    for (var i = 0; i < (data.length >= MAX_PINS ? MAX_PINS : data.length); i++) {
       var pin = pinTemplate.cloneNode(true);
       pin.setAttribute('style', 'left: ' + data[i].location.x + 'px; top: ' + data[i].location.y + 'px;');
 
@@ -23,6 +23,7 @@ window.pins = (function () {
   };
 
   return {
+    fragment: fragment,
     showPins: showPins
   };
 })();
