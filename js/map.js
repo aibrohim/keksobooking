@@ -11,7 +11,10 @@ window.map = (function () {
   var FILTER_FORM = document.querySelectorAll('.map__filters > *');
   var selectType = document.querySelector('#housing-type');
   var mapFiltersForm = document.querySelector('.map__filters');
-  var selectPrice = document.querySelectorAll('#housing-price');
+  var selectPrice = document.querySelector('#housing-price');
+  var selectRooms = document.querySelector('#housing-rooms');
+  var selectGuests = document.querySelector('#housing-guests');
+  var featuresFieldset = document.querySelector('#housing-features');
 
   var resetMapFilterForm = function () {
     mapFiltersForm.reset();
@@ -38,15 +41,21 @@ window.map = (function () {
     window.card.openPopup(data);
     selectType.addEventListener('change', onDebouncedUpdatePins);
     selectPrice.addEventListener('change', onDebouncedUpdatePins);
+    selectRooms.addEventListener('change', onDebouncedUpdatePins);
+    selectGuests.addEventListener('change', onDebouncedUpdatePins);
+    featuresFieldset.addEventListener('change', onDebouncedUpdatePins);
   };
 
   var updateData = function () {
     var filteredData = loadedAds.slice();
-    if (selectType.value === selectPrice.value === 'any') {
+    if (selectType.value === selectPrice.value === selectRooms.value === selectGuests.value === 'any') {
       return;
     } else {
       filteredData = window.filter.filterType(filteredData);
       filteredData = window.filter.filterPrice(filteredData);
+      filteredData = window.filter.filterRooms(filteredData);
+      filteredData = window.filter.filterGuests(filteredData);
+      filteredData = window.filter.filterFeatures(filteredData);
     }
     removePinsCard();
     window.pins.showPins(filteredData);
