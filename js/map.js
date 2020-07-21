@@ -12,8 +12,6 @@ window.map = (function () {
   var selectType = document.querySelector('#housing-type');
   var mapFiltersForm = document.querySelector('.map__filters');
 
-  var selectsMapFilters = document.querySelector('.map__filters > select');
-
   var resetMapFilterForm = function () {
     mapFiltersForm.reset();
   };
