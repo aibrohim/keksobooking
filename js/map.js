@@ -42,7 +42,7 @@ window.map = (function () {
 
   var updateData = function () {
     var filteredData = loadedAds.slice();
-    if (selectType.value === 'any') {
+    if (selectType.value === selectPrice.value === 'any') {
       return;
     } else {
       filteredData = window.filter.filterType(filteredData);
