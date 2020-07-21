@@ -11,6 +11,7 @@ window.map = (function () {
   var FILTER_FORM = document.querySelectorAll('.map__filters > *');
   var selectType = document.querySelector('#housing-type');
   var mapFiltersForm = document.querySelector('.map__filters');
+  var selectPrice = document.querySelectorAll('#housing-price');
 
   var resetMapFilterForm = function () {
     mapFiltersForm.reset();
@@ -36,6 +37,7 @@ window.map = (function () {
     window.pins.showPins(data);
     window.card.openPopup(data);
     selectType.addEventListener('change', onDebouncedUpdatePins);
+    selectPrice.addEventListener('change', onDebouncedUpdatePins);
   };
 
   var updateData = function () {
@@ -44,6 +46,7 @@ window.map = (function () {
       return;
     } else {
       filteredData = window.filter.filterType(filteredData);
+      filteredData = window.filter.filterPrice(filteredData);
     }
     removePinsCard();
     window.pins.showPins(filteredData);

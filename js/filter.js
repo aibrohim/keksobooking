@@ -2,18 +2,30 @@
 
 window.filter = (function () {
   var selectType = document.querySelector('#housing-type');
+  var selectPrice = document.querySelectorAll('#housing-price');
 
-  var filterType = function (ads) {
+  var filterType = function (data) {
     if (selectType.value === 'any') {
-      return ads;
+      return data;
     } else {
-      return ads.slice().filter(function (ad) {
-        return ad.offer.type === selectType.value;
+      return data.slice().filter(function (element) {
+        return element.offer.type === selectType.value;
+      });
+    }
+  };
+
+  var filterPrice = function (data) {
+    if (selectType.value === 'any') {
+      return data;
+    } else {
+      return data.slice().filter(function (element) {
+        return element.offer.type === selectType.value;
       });
     }
   };
 
   return {
-    filterType: filterType
+    filterType: filterType,
+    filterPrice: filterPrice
   };
 })();
