@@ -12,12 +12,10 @@ window.map = (function () {
   var selectType = document.querySelector('#housing-type');
   var mapFiltersForm = document.querySelector('.map__filters');
 
-  var selectsMapFilters = mapFiltersForm.querySelector('.map__filters > select');
+  var selectsMapFilters = document.querySelector('.map__filters > select');
 
   var resetMapFilterForm = function () {
-    selectsMapFilters.forEach(function (select) {
-      select.value = 'any';
-    });
+    mapFiltersForm.reset();
   };
 
   var removePinsCard = function () {
@@ -76,9 +74,8 @@ window.map = (function () {
       var popup = document.querySelector('.popup');
 
       MAP.classList.add('map--faded');
-      for (var i = 1; i < window.mapPins.length; i++) {
-        window.pins.fragment.appendChild(window.mapPins[i]);
-      }
+      removePinsCard();
+      resetMapFilterForm();
 
       window.form.resetForm();
       resetMapFilterForm();
