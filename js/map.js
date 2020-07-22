@@ -35,10 +35,13 @@ window.map = (function () {
 
   var loadedAds = [];
 
+  window.loadedAds = loadedAds;
+
   var successHandler = function (data) {
     loadedAds = data;
-    window.pins.showPins(data);
-    window.card.openPopup(data);
+    window.pins.showPins(loadedAds);
+    window.card.openPopup(loadedAds);
+    console.log(loadedAds);
     selectType.addEventListener('change', onDebouncedUpdatePins);
     selectPrice.addEventListener('change', onDebouncedUpdatePins);
     selectRooms.addEventListener('change', onDebouncedUpdatePins);

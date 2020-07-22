@@ -29,8 +29,15 @@ window.main = (function () {
     timein.value = timeout.value;
   });
 
+  var i = 0;
+
   MAIN_PIN.addEventListener('mousedown', function (evt) {
     if (evt.button === 0) {
+      if (i > 0) {
+        return;
+      }
+
+      i++;
       window.map.startProgram();
     }
   });

@@ -2,7 +2,7 @@
 
 window.backend = (function () {
   var URL = 'https://javascript.pages.academy/keksobooking/data';
-  var postURL = 'https://javascript.pages.academy/keksobooking';
+  var postURL = 'https://javascript.pages.academy/keksobookin';
 
   return {
     data: function (onSuccess) {
