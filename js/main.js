@@ -32,7 +32,8 @@ window.main = (function () {
   var i = 0;
 
   MAIN_PIN.addEventListener('mousedown', function (evt) {
-    if (evt.button === 0) {
+    var eventButton = evt.button;
+    if (eventButton === 0) {
       if (i > 0) {
         return;
       }

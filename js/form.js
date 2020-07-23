@@ -26,11 +26,12 @@ window.form = (function () {
 
   var onError = function () {
     window.messages.onError();
+    console.log('salom');
   };
 
   form.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    window.backend.postData(new FormData(form), onSuccess, onError);
+    window.backend.saveData(new FormData(form), onSuccess, onError);
   });
 
   resetButton.addEventListener('click', function () {
@@ -38,24 +39,43 @@ window.form = (function () {
   });
 
   return {
-    resetForm: resetForm,
+    reset: resetForm,
 
     onRoomNumberChange: function () {
-      if (roomNumber.value === '1') {
-        capacity.innerHTML = '';
-        window.form.addOption(1);
-      } else if (roomNumber.value === '2') {
-        capacity.innerHTML = '';
-        window.form.addOption(1);
-        window.form.addOption(2);
-      } else if (roomNumber.value === '3') {
-        capacity.innerHTML = '';
-        window.form.addOption(1);
-        window.form.addOption(2);
-        window.form.addOption(3);
-      } else if (roomNumber.value === '100') {
-        capacity.innerHTML = '';
-        window.form.addOption(0);
+      var roomNumberValue = roomNumber.value;
+      var addOption = window.form.addOption;
+      var roomCount = {
+        ONE_ROOM: '1',
+        TWO_ROOMS: '2',
+        THREE_ROOMS: '3',
+        HUNDRED_ROOMS: '100'
+      };
+      var guestCount = {
+        ONE_GUEST: 1,
+        TWO_GUESTS: 2,
+        THREE_GUESTS: 3,
+        NO_GUESTS: 0
+      };
+      switch (roomNumberValue) {
+        case (roomCount.ONE_ROOM):
+          capacity.innerHTML = '';
+          addOption(guestCount.ONE_GUEST);
+          break;
+        case (roomCount.TWO_ROOMS):
+          capacity.innerHTML = '';
+          addOption(guestCount.ONE_GUEST);
+          addOption(guestCount.TWO_GUESTS);
+          break;
+        case (roomCount.THREE_ROOMS):
+          capacity.innerHTML = '';
+          addOption(guestCount.ONE_GUEST);
+          addOption(guestCount.TWO_GUESTS);
+          addOption(guestCount.THREE_GUESTS);
+          break;
+        case (roomCount.HUNDRED_ROOMS):
+          capacity.innerHTML = '';
+          addOption(guestCount.NO_GUESTS);
+          break;
       }
     },
 
@@ -70,18 +90,24 @@ window.form = (function () {
     },
 
     onAccomodationTypeChange: function () {
-      if (accomodationType.value === 'bungalo') {
-        accomodationPrice.setAttribute('placeholder', '0');
-        accomodationPrice.setAttribute('min', '0');
-      } else if (accomodationType.value === 'flat') {
-        accomodationPrice.setAttribute('placeholder', '1000');
-        accomodationPrice.setAttribute('min', '1000');
-      } else if (accomodationType.value === 'house') {
-        accomodationPrice.setAttribute('placeholder', '5000');
-        accomodationPrice.setAttribute('min', '5000');
-      } else if (accomodationType.value === 'palace') {
-        accomodationPrice.setAttribute('placeholder', '10000');
-        accomodationPrice.setAttribute('min', '10000');
+      var accomodationTypeValue = accomodationType.value;
+      switch (accomodationTypeValue) {
+        case ('bungalo'):
+          accomodationPrice.setAttribute('placeholder', '0');
+          accomodationPrice.setAttribute('min', '0');
+          break;
+        case ('flat'):
+          accomodationPrice.setAttribute('placeholder', '1000');
+          accomodationPrice.setAttribute('min', '1000');
+          break;
+        case ('house'):
+          accomodationPrice.setAttribute('placeholder', '5000');
+          accomodationPrice.setAttribute('min', '5000');
+          break;
+        case ('palace'):
+          accomodationPrice.setAttribute('placeholder', '10000');
+          accomodationPrice.setAttribute('min', '10000');
+          break;
       }
     }
   };

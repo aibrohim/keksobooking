@@ -2,10 +2,10 @@
 
 window.backend = (function () {
   var URL = 'https://javascript.pages.academy/keksobooking/data';
-  var postURL = 'https://javascript.pages.academy/keksobookin';
+  var POST_URL = 'https://javascript.pages.academy/keksobooking';
 
   return {
-    data: function (onSuccess) {
+    loadData: function (onSuccess) {
       var xhr = new XMLHttpRequest();
 
       xhr.responseType = 'json';
@@ -17,19 +17,21 @@ window.backend = (function () {
       xhr.open('GET', URL);
       xhr.send();
     },
-    postData: function (data, onSuccess, onError) {
+    saveData: function (data, onSuccess, onError) {
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
 
       xhr.addEventListener('load', function () {
-        if (xhr.status === 200) {
+        var STATUS = xhr.status;
+
+        if (STATUS === 200) {
           onSuccess();
         } else {
           onError();
         }
       });
 
-      xhr.open('POST', postURL);
+      xhr.open('POST', POST_URL);
       xhr.send(data);
     }
   };

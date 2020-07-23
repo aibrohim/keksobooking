@@ -63,15 +63,15 @@ window.filter = (function () {
   };
 
   var filterFeatures = function (data) {
-    for (var i = 0; i < features.length; i++) {
-      if (features[i].checked === false) {
+    features.forEach(function (feature) {
+      if (feature.checked === false) {
         data = data;
       } else {
         data = data.slice().filter(function (element) {
-          return element.offer.features.includes(features[i].value);
+          return element.offer.features.includes(feature.value);
         });
       }
-    }
+    });
 
     return data;
   };
