@@ -26,7 +26,6 @@ window.form = (function () {
 
   var onError = function () {
     window.messages.onError();
-    console.log('salom');
   };
 
   form.addEventListener('submit', function (evt) {
