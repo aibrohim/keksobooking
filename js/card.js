@@ -3,7 +3,7 @@
 window.card = (function () {
   var cardTemplate = document.querySelector('#card').content.querySelector('article');
 
-  var dictionary = {
+  var Dictionary = {
     palace: 'Дворец',
     house: 'Дом',
     bungalo: 'Бунгало',
@@ -41,7 +41,7 @@ window.card = (function () {
       popup.querySelector('.popup__title').textContent = objectItem.offer.title;
       popup.querySelector('.popup__text--address').textContent = objectItem.offer.address;
       popup.querySelector('.popup__text--price').textContent = objectItem.offer.price + '₽/ночь';
-      popup.querySelector('.popup__type').textContent = dictionary[objectItem.offer.type];
+      popup.querySelector('.popup__type').textContent = Dictionary[objectItem.offer.type];
       popup.querySelector('.popup__text--capacity').textContent = objectItem.offer.rooms + ' комнаты для ' + objectItem.offer.guests + ' гостей';
       popup.querySelector('.popup__text--time').textContent = 'Заезд после ' + objectItem.offer.checkin + ', выезд до ' + objectItem.offer.checkout;
 
@@ -80,15 +80,13 @@ window.card = (function () {
       return MAP.insertBefore(popup, document.querySelector('.map__filters-container'));
     },
     openPopup: function (data) {
-      for (var i = 0; i < window.mapPins.length; i++) {
-        if (!window.mapPins[i].classList.contains('map__pin--main')) {
-          window.mapPins[i].addEventListener('click', (function (localI) {
-            return function () {
-              window.card.showPopup(data[localI - 1]);
-            };
-          })(i));
+      window.mapPins.forEach(function (pin, i) {
+        if (!pin.classList.contains('map__pin--main')) {
+          pin.addEventListener('click', function () {
+            return window.card.showPopup(data[i - 1]);
+          });
         }
-      }
+      });
     }
   };
 })();

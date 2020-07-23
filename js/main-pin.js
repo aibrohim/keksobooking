@@ -41,9 +41,9 @@ window.mainPin = (function () {
         MAIN_PIN.style.left = (MAIN_PIN.offsetLeft + shift.x) + 'px';
       }
 
-      if (MAIN_PIN.offsetTop <= 130) {
+      if (MAIN_PIN.offsetTop <= 45) {
         MAIN_PIN.style.top = (MAIN_PIN.offsetTop + shift.y) + 'px';
-      } else if (MAIN_PIN.offsetTop >= 630) {
+      } else if (MAIN_PIN.offsetTop >= 545) {
         MAIN_PIN.style.top = (MAIN_PIN.offsetTop + shift.y) + 'px';
       }
 

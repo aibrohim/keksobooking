@@ -37,8 +37,8 @@ window.map = (function () {
 
   var successHandler = function (data) {
     loadedAds = data;
-    window.pins.showPins(data);
-    window.card.openPopup(data);
+    window.pins.show(loadedAds);
+    window.card.openPopup(loadedAds);
     selectType.addEventListener('change', onDebouncedUpdatePins);
     selectPrice.addEventListener('change', onDebouncedUpdatePins);
     selectRooms.addEventListener('change', onDebouncedUpdatePins);
@@ -58,7 +58,7 @@ window.map = (function () {
       filteredData = window.filter.filterFeatures(filteredData);
     }
     removePinsCard();
-    window.pins.showPins(filteredData);
+    window.pins.show(filteredData);
     window.card.openPopup(filteredData);
   };
 
@@ -67,7 +67,7 @@ window.map = (function () {
   return {
     startProgram: function () {
       MAP.classList.remove('map--faded');
-      window.backend.data(successHandler);
+      window.backend.loadData(successHandler);
       AD_FORM.classList.remove('ad-form--disabled');
       locationInput.value = (MAIN_PIN.offsetLeft + (MAIN_PIN_WIDTH / 2)) + ', ' + (MAIN_PIN.offsetTop + (MAIN_PIN_HEIGHT));
       window.form.onRoomNumberChange();
@@ -87,7 +87,7 @@ window.map = (function () {
       removePinsCard();
       resetMapFilterForm();
 
-      window.form.resetForm();
+      window.form.reset();
       resetMapFilterForm();
 
       AD_FORM.classList.add('ad-form--disabled');
