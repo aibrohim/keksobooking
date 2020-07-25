@@ -5,5 +5,5 @@ window.mainPinPress = (function () {
 
   return {
     number: mainPinPressNumber
-  }
+  };
 })();
