@@ -3,6 +3,7 @@
 window.backend = (function () {
   var URL = 'https://javascript.pages.academy/keksobooking/data';
   var POST_URL = 'https://javascript.pages.academy/keksobooking';
+  var SUCCESS_STATUS = 200;
 
   return {
     loadData: function (onSuccess) {
@@ -19,7 +20,6 @@ window.backend = (function () {
     },
     saveData: function (data, onSuccess, onError) {
       var xhr = new XMLHttpRequest();
-      var SUCCESS_STATUS = 200;
       xhr.responseType = 'json';
 
       xhr.addEventListener('load', function () {
