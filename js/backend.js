@@ -19,12 +19,11 @@ window.backend = (function () {
     },
     saveData: function (data, onSuccess, onError) {
       var xhr = new XMLHttpRequest();
+      var SUCCESS_STATUS = 200;
       xhr.responseType = 'json';
 
       xhr.addEventListener('load', function () {
-        var STATUS = xhr.status;
-
-        if (STATUS === 200) {
+        if (xhr.status === SUCCESS_STATUS) {
           onSuccess();
         } else {
           onError();
