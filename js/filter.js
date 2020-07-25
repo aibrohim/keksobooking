@@ -22,58 +22,48 @@ window.filter = (function () {
   var selectGuests = document.querySelector('#housing-guests');
   var features = document.querySelectorAll('#housing-features > input');
 
-  var filterType = function (data) {
+  var filterType = function (el) {
     if (selectType.value === 'any') {
-      return data;
+      return el;
     } else {
-      return data.slice().filter(function (element) {
-        return element.offer.type === selectType.value;
-      });
+      return el.offer.type === selectType.value;
     }
   };
 
-  var filterPrice = function (data) {
+  var filterPrice = function (el) {
     if (selectPrice.value === 'any') {
-      return data;
+      return el;
     } else {
-      return data.slice().filter(function (element) {
-        return element.offer.price >= pricesList[selectPrice.value].MIN && element.offer.price < pricesList[selectPrice.value].MAX;
-      });
+      return el.offer.price >= pricesList[selectPrice.value].MIN && el.offer.price < pricesList[selectPrice.value].MAX;
     }
   };
 
-  var filterRooms = function (data) {
+  var filterRooms = function (el) {
     if (selectRooms.value === 'any') {
-      return data;
+      return el;
     } else {
-      return data.slice().filter(function (element) {
-        return element.offer.rooms === Number(selectRooms.value);
-      });
+      return el.offer.rooms === Number(selectRooms.value);
     }
   };
 
-  var filterGuests = function (data) {
+  var filterGuests = function (el) {
     if (selectGuests.value === 'any') {
-      return data;
+      return el;
     } else {
-      return data.slice().filter(function (element) {
-        return element.offer.guests === Number(selectGuests.value);
-      });
+      return el.offer.guests === Number(selectGuests.value);
     }
   };
 
-  var filterFeatures = function (data) {
+  var filterFeatures = function (el) {
     features.forEach(function (feature) {
       if (feature.checked === false) {
-        data = data;
+        el = el;
       } else {
-        data = data.slice().filter(function (element) {
-          return element.offer.features.includes(feature.value);
-        });
+        el = el.offer.features.includes(feature.value);
       }
     });
 
-    return data;
+    return el;
   };
 
   return {

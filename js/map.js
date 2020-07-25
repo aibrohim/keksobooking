@@ -51,15 +51,18 @@ window.map = (function () {
     if (selectType.value === selectPrice.value === selectRooms.value === selectGuests.value === 'any') {
       return;
     } else {
-      filteredData = window.filter.filterType(filteredData);
-      filteredData = window.filter.filterPrice(filteredData);
-      filteredData = window.filter.filterRooms(filteredData);
-      filteredData = window.filter.filterGuests(filteredData);
-      filteredData = window.filter.filterFeatures(filteredData);
+      var result = [];
+      for (var i = 0; i < filteredData.length && result.length < 5; i++) {
+        var el = filteredData[i];
+        var isElementCompatible = window.filter.filterType(el) && window.filter.filterPrice(el) && window.filter.filterRooms(el) && window.filter.filterGuests(el) && window.filter.filterFeatures(el);
+        if (isElementCompatible) {
+          result.push(el);
+        }
+      }
     }
     removePinsCard();
-    window.pins.show(filteredData);
-    window.card.openPopup(filteredData);
+    window.pins.show(result);
+    window.card.openPopup(result);
   };
 
   var onDebouncedUpdatePins = window.debounce(updateData);
