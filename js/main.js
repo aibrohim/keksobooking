@@ -33,11 +33,11 @@ window.main = (function () {
     var MAIN_BUTTON_NUMBER = 0;
 
     if (evt.button === MAIN_BUTTON_NUMBER) {
-      if (window.mainPinPress.number > 0) {
+      if (window.assets.mainPinPressNumber > 0) {
         return;
       }
 
-      window.mainPinPress.number++;
+      window.assets.mainPinPressNumber++;
       window.map.startProgram();
     }
   });

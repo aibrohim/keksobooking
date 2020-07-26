@@ -30,12 +30,12 @@ window.form = (function () {
 
   form.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    window.mainPinPress.number = 0;
+    window.assets.mainPinPressNumber = 0;
     window.backend.saveData(new FormData(form), onSuccess, onError);
   });
 
   resetButton.addEventListener('click', function () {
-    window.mainPinPress.number = 0;
+    window.assets.mainPinPressNumber = 0;
     window.map.endProgram();
   });
 

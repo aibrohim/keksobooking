@@ -24,46 +24,38 @@ window.filter = (function () {
 
   var filterType = function (el) {
     if (selectType.value === 'any') {
-      return el;
-    } else {
-      return el.offer.type === selectType.value;
+      return true;
     }
+    return el.offer.type === selectType.value;
   };
 
   var filterPrice = function (el) {
     if (selectPrice.value === 'any') {
-      return el;
-    } else {
-      return el.offer.price >= pricesList[selectPrice.value].MIN && el.offer.price < pricesList[selectPrice.value].MAX;
+      return true;
     }
+    return el.offer.price >= pricesList[selectPrice.value].MIN && el.offer.price < pricesList[selectPrice.value].MAX;
   };
 
   var filterRooms = function (el) {
     if (selectRooms.value === 'any') {
-      return el;
-    } else {
-      return el.offer.rooms === Number(selectRooms.value);
+      return true;
     }
+    return el.offer.rooms === Number(selectRooms.value);
   };
 
   var filterGuests = function (el) {
     if (selectGuests.value === 'any') {
-      return el;
-    } else {
-      return el.offer.guests === Number(selectGuests.value);
+      return true;
     }
+    return el.offer.guests === Number(selectGuests.value);
   };
 
   var filterFeatures = function (el) {
-    features.forEach(function (feature) {
-      if (feature.checked === false) {
-        el = el;
-      } else {
-        el = el.offer.features.includes(feature.value);
-      }
+    return Array.from(features).filter(function (feature) {
+      return feature.checked;
+    }).every(function (feature) {
+      return el.offer.features.includes(feature.value);
     });
-
-    return el;
   };
 
   return {

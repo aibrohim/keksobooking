@@ -48,19 +48,19 @@ window.map = (function () {
   };
 
   var updateData = function () {
-    var filteredData = loadedAds.slice();
     if (selectType.value === selectPrice.value === selectRooms.value === selectGuests.value === 'any') {
       return;
-    } else {
-      var result = [];
-      for (var i = 0; i < filteredData.length && result.length < 5; i++) {
-        var el = filteredData[i];
-        var isElementCompatible = window.filter.filterType(el) && window.filter.filterPrice(el) && window.filter.filterRooms(el) && window.filter.filterGuests(el) && window.filter.filterFeatures(el);
-        if (isElementCompatible) {
-          result.push(el);
-        }
+    }
+    var filteredData = loadedAds.slice();
+    var result = [];
+    for (var i = 0; i < filteredData.length && result.length < 5; i++) {
+      var el = filteredData[i];
+      var isElementCompatible = window.filter.filterType(el) && window.filter.filterPrice(el) && window.filter.filterRooms(el) && window.filter.filterGuests(el) && window.filter.filterFeatures(el);
+      if (isElementCompatible) {
+        result.push(el);
       }
     }
+
     removePinsCard();
     window.pins.show(result);
     window.card.openPopup(result);
