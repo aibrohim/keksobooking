@@ -7,6 +7,7 @@ window.photo = (function () {
   var avatarPreview = document.querySelector('.ad-form-header__preview img');
   var homeImageChooser = document.querySelector('#images');
   var homeImagePreviewContainer = document.querySelector('.ad-form__photo');
+  var homeImgPreview = document.createElement('img');
 
   var putAvatar = function (reader) {
     var preview = avatarPreview;
@@ -14,12 +15,10 @@ window.photo = (function () {
   };
 
   var putHomeImage = function (reader) {
-    var previewContainer = homeImagePreviewContainer;
-    var preview = document.createElement('img');
-    preview.src = reader.result;
-    preview.width = 40;
-    preview.height = 44;
-    previewContainer.appendChild(preview);
+    homeImgPreview.src = reader.result;
+    homeImgPreview.width = 70;
+    homeImgPreview.height = 70;
+    homeImagePreviewContainer.appendChild(homeImgPreview);
   };
 
   var uploadImage = function (chooser, putImage) {

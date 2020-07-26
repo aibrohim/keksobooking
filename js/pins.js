@@ -8,7 +8,7 @@ window.pins = (function () {
 
   var showPins = function (data) {
     for (var i = 0; i < data.length; i++) {
-      if (i < MAX_PINS) {
+      if (i < MAX_PINS) { 
         var pin = pinTemplate.cloneNode(true);
         pin.setAttribute('style', 'left: ' + data[i].location.x + 'px; top: ' + data[i].location.y + 'px;');
 
