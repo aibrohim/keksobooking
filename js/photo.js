@@ -9,6 +9,9 @@ window.photo = (function () {
   var homeImagePreviewContainer = document.querySelector('.ad-form__photo');
   var homeImgPreview = document.createElement('img');
 
+  homeImgPreview.width = 70;
+  homeImgPreview.height = 70;
+
   var putAvatar = function (reader) {
     var preview = avatarPreview;
     preview.src = reader.result;
@@ -16,8 +19,6 @@ window.photo = (function () {
 
   var putHomeImage = function (reader) {
     homeImgPreview.src = reader.result;
-    homeImgPreview.width = 70;
-    homeImgPreview.height = 70;
     homeImagePreviewContainer.appendChild(homeImgPreview);
   };
 
