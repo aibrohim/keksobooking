@@ -7,17 +7,15 @@ window.pins = (function () {
   var fragment = document.createDocumentFragment();
 
   var showPins = function (data) {
-    for (var i = 0; i < data.length; i++) {
-      if (i < MAX_PINS) { 
-        var pin = pinTemplate.cloneNode(true);
-        pin.setAttribute('style', 'left: ' + data[i].location.x + 'px; top: ' + data[i].location.y + 'px;');
+    for (var i = 0; i < data.length && i < MAX_PINS; i++) {
+      var pin = pinTemplate.cloneNode(true);
+      pin.setAttribute('style', 'left: ' + data[i].location.x + 'px; top: ' + data[i].location.y + 'px;');
 
-        var pinImg = pin.querySelector('img');
-        pinImg.setAttribute('src', data[i].author.avatar);
-        pinImg.setAttribute('alt', data[i].offer.title);
+      var pinImg = pin.querySelector('img');
+      pinImg.setAttribute('src', data[i].author.avatar);
+      pinImg.setAttribute('alt', data[i].offer.title);
 
-        fragment.appendChild(pin);
-      }
+      fragment.appendChild(pin);
     }
     MAP_PINS.appendChild(fragment);
     window.mapPins = document.querySelectorAll('.map__pin');
