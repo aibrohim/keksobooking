@@ -15,6 +15,7 @@ window.map = (function () {
   var selectRooms = document.querySelector('#housing-rooms');
   var selectGuests = document.querySelector('#housing-guests');
   var featuresFieldset = document.querySelector('#housing-features');
+  var avatarPreview = document.querySelector('.ad-form-header__preview img');
 
   var resetMapFilterForm = function () {
     mapFiltersForm.reset();
@@ -85,6 +86,7 @@ window.map = (function () {
     },
     endProgram: function () {
       var popup = document.querySelector('.popup');
+      var homeImagePreview = document.querySelector('.ad-form__photo img');
 
       MAP.classList.add('map--faded');
       removePinsCard();
@@ -108,6 +110,11 @@ window.map = (function () {
 
       if (popup) {
         popup.remove();
+      }
+
+      avatarPreview.src = 'img/muffin-grey.svg';
+      if (homeImagePreview) {
+        homeImagePreview.remove();
       }
     }
   };
